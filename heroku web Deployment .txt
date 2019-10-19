@@ -1,0 +1,50 @@
+1. Create a new folder then copy your root project, virtual environment and paste it of your newly created folder
+2. Active your virtual environment and run your project again!!!!!!!! After successfully run stop it.
+3. install gunicorn in your virtual environment
+--> pip install gunicorn
+4. install django in your virtual environment
+--> pip install django-heroku
+**** add some line you settings.py of your project ****
+IN TOP Add
+-->>     import django_heroku
+IN Bottom Add
+-->>    # Activate Django-Heroku.
+	django_heroku.settings(locals())
+
+5. Create a Procfile in your root project
+**** file name is : Procfile  *** # No extension only name it Procfile
+in this Procfile Add one line 
+***  web: gunicorn myproject.wsgi --log-file -   **** # Here included YOUR_PROJECT_NAME, Replace myproject in this line
+6. Create requirements.txt file 
+-->> pip freeze > requirements.txt
+7. initilize git
+-->> git init
+8. git add .   # git add --all
+9. git commit -m "First Commit"
+
+10. login heroku 
+-->> heroku login   # flow the instraction, after login
+11. Create a app in heroku
+-->> heroku create YOUR_APP_NAME
+12. push your project in heroku
+-->> git push heroku master
+OR,
+** if there is error 
+Try 
+-->> heroku git:remote -a awesomeblog363410     # awesomeblog363410 is YOUR_APP_NAME
+And run cmd again
+-->> git push heroku master
+** if create error for static file 
+try 
+-->> heroku config:set DISABLE_COLLECTSTATIC=1
+
+*************** Your app will successfully uploaded ********************
+if you run your app there will be some issue flow the instructions bellow
+After uploading you have to migrate,makemigrations and create super user for admin panel 
+-->> heroku run python manage.py migrate
+-->> heroku run python manage.py makemigrations
+-->> heroku run python manage.py createsuperuser 
+
+ALL DONE Go Browsec your web applications
+
+
